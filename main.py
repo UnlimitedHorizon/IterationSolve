@@ -42,7 +42,7 @@ class IterationSolve:
             print("after {} iterations, the precision can't get below {}".format(self.max_iteration_num, self.precision))
         return result_list
 
-    def PrintResult(self, result_list):
+    def OutputResult(self, result_list):
         l = len(result_list)
         if l > self.max_iteration_num:
             self.f.write("!!!After {} iterations, the precision can't get below {}\n".format(self.max_iteration_num, self.precision))
@@ -54,32 +54,11 @@ class IterationSolve:
             self.f.write("result list:\n{}\n\n".format(result_list))
 
 
-
-
-# def IterationFunction1(x):
-#     x_next = 20/(x**2+2*x+10)
-#     return x_next
-
-# def IterationFunction2(x):
-#     x_next = (20-2*x**2-x**3)/10
-#     return x_next
-
-# def IterationFunctionNewton(x):
-#     x_next = x - (x**3 + 2*x**2 + 10*x - 20)/(3*x**2 + 4*x + 10)
-#     return x_next
-
 iteration_solve = IterationSolve()
-iteration_solve.PrintResult(iteration_solve.IterationSolve(iteration_solve.IterationFunction1))
-iteration_solve.PrintResult(iteration_solve.IterationSolve(iteration_solve.IterationFunction2))
-iteration_solve.PrintResult(iteration_solve.SteffensenSolve(iteration_solve.IterationFunction1))
-iteration_solve.PrintResult(iteration_solve.SteffensenSolve(iteration_solve.IterationFunction2))
-iteration_solve.PrintResult(iteration_solve.IterationSolve(iteration_solve.IterationFunctionNewton))
+iteration_solve.OutputResult(iteration_solve.IterationSolve(iteration_solve.IterationFunction1))
+iteration_solve.OutputResult(iteration_solve.IterationSolve(iteration_solve.IterationFunction2))
+iteration_solve.OutputResult(iteration_solve.SteffensenSolve(iteration_solve.IterationFunction1))
+iteration_solve.OutputResult(iteration_solve.SteffensenSolve(iteration_solve.IterationFunction2))
+iteration_solve.OutputResult(iteration_solve.IterationSolve(iteration_solve.IterationFunctionNewton))
 
-# PrintResult(f, IterationSolve(IterationFunction1))
-# PrintResult(f, IterationSolve(IterationFunction2))
-# PrintResult(f, SteffensenSolve(IterationFunction1))
-# PrintResult(f, SteffensenSolve(IterationFunction2))
-# PrintResult(f, IterationSolve(IterationFunctionNewton))
-
-# f.close()
 print("finish!")
