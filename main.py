@@ -1,10 +1,14 @@
 class IterationSolve:
+    IterationFunction1 = lambda x : 20/(x**2+2*x+10)
+    IterationFunction2 = lambda x : (20-2*x**2-x**3)/10
+    IterationFunctionNewton = lambda x : x - (x**3 + 2*x**2 + 10*x - 20)/(3*x**2 + 4*x + 10)
+    
     def __init__(self):
         super().__init__()
         self.f = open("output.txt", "w")
-        self.IterationFunction1 = lambda x : 20/(x**2+2*x+10)
-        self.IterationFunction2 = lambda x : (20-2*x**2-x**3)/10
-        self.IterationFunctionNewton = lambda x : x - (x**3 + 2*x**2 + 10*x - 20)/(3*x**2 + 4*x + 10)
+        # self.IterationFunction1 = lambda x : 20/(x**2+2*x+10)
+        # self.IterationFunction2 = lambda x : (20-2*x**2-x**3)/10
+        # self.IterationFunctionNewton = lambda x : x - (x**3 + 2*x**2 + 10*x - 20)/(3*x**2 + 4*x + 10)
         self.precision = 1e-9
         self.max_iteration_num = 500
         self.x0 = 1
@@ -55,10 +59,15 @@ class IterationSolve:
 
 
 iteration_solve = IterationSolve()
-iteration_solve.OutputResult(iteration_solve.IterationSolve(iteration_solve.IterationFunction1))
-iteration_solve.OutputResult(iteration_solve.IterationSolve(iteration_solve.IterationFunction2))
-iteration_solve.OutputResult(iteration_solve.SteffensenSolve(iteration_solve.IterationFunction1))
-iteration_solve.OutputResult(iteration_solve.SteffensenSolve(iteration_solve.IterationFunction2))
-iteration_solve.OutputResult(iteration_solve.IterationSolve(iteration_solve.IterationFunctionNewton))
+# iteration_solve.OutputResult(iteration_solve.IterationSolve(iteration_solve.IterationFunction1))
+# iteration_solve.OutputResult(iteration_solve.IterationSolve(iteration_solve.IterationFunction2))
+# iteration_solve.OutputResult(iteration_solve.SteffensenSolve(iteration_solve.IterationFunction1))
+# iteration_solve.OutputResult(iteration_solve.SteffensenSolve(iteration_solve.IterationFunction2))
+# iteration_solve.OutputResult(iteration_solve.IterationSolve(iteration_solve.IterationFunctionNewton))
+iteration_solve.OutputResult(iteration_solve.IterationSolve(IterationSolve.IterationFunction1))
+iteration_solve.OutputResult(iteration_solve.IterationSolve(IterationSolve.IterationFunction2))
+iteration_solve.OutputResult(iteration_solve.SteffensenSolve(IterationSolve.IterationFunction1))
+iteration_solve.OutputResult(iteration_solve.SteffensenSolve(IterationSolve.IterationFunction2))
+iteration_solve.OutputResult(iteration_solve.IterationSolve(IterationSolve.IterationFunctionNewton))
 
 print("finish!")
