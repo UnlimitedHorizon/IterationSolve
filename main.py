@@ -6,9 +6,6 @@ class IterationSolve:
     def __init__(self):
         super().__init__()
         self.f = open("output.txt", "w")
-        # self.IterationFunction1 = lambda x : 20/(x**2+2*x+10)
-        # self.IterationFunction2 = lambda x : (20-2*x**2-x**3)/10
-        # self.IterationFunctionNewton = lambda x : x - (x**3 + 2*x**2 + 10*x - 20)/(3*x**2 + 4*x + 10)
         self.precision = 1e-9
         self.max_iteration_num = 500
         self.x0 = 1
@@ -16,7 +13,8 @@ class IterationSolve:
     def __del__(self):
         self.f.close()
 
-    def SteffensenFunction(self, iteration_function, x):
+    @staticmethod
+    def SteffensenFunction(iteration_function, x):
         x_i1 = iteration_function(x)
         x_i2 = iteration_function(x_i1)
         x_next = (x*x_i2 - x_i1**2)/(x_i2 - 2*x_i1 + x)
@@ -38,7 +36,7 @@ class IterationSolve:
         result_list=[self.x0]
         while len(result_list) <= self.max_iteration_num:
             x_current = result_list[-1]
-            x_next = self.SteffensenFunction(iteration_function, x_current)
+            x_next = IterationSolve.SteffensenFunction(iteration_function, x_current)
             result_list.append(x_next)
             if abs(x_next - x_current) <= self.precision:
                 break
@@ -59,11 +57,6 @@ class IterationSolve:
 
 
 iteration_solve = IterationSolve()
-# iteration_solve.OutputResult(iteration_solve.IterationSolve(iteration_solve.IterationFunction1))
-# iteration_solve.OutputResult(iteration_solve.IterationSolve(iteration_solve.IterationFunction2))
-# iteration_solve.OutputResult(iteration_solve.SteffensenSolve(iteration_solve.IterationFunction1))
-# iteration_solve.OutputResult(iteration_solve.SteffensenSolve(iteration_solve.IterationFunction2))
-# iteration_solve.OutputResult(iteration_solve.IterationSolve(iteration_solve.IterationFunctionNewton))
 iteration_solve.OutputResult(iteration_solve.IterationSolve(IterationSolve.IterationFunction1))
 iteration_solve.OutputResult(iteration_solve.IterationSolve(IterationSolve.IterationFunction2))
 iteration_solve.OutputResult(iteration_solve.SteffensenSolve(IterationSolve.IterationFunction1))
